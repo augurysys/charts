@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "nsqlookup.fullname" . }}
+  labels:
+    app: {{ template "nsqlookup.name" . }}
+    chart: {{ template "nsqd.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  ports:
+  - name: main
+    protocol: TCP
+    port: 4160
+    targetPort: 4160
+  - name: secondary
+    protocol: TCP
+    port: 4161
+    targetPort: 4161
+  selector:
+    app: {{ template "nsqlookup.name" . }}
+    release: {{ .Release.Name }}
+  clusterIP: None

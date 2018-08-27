@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ template "nsqd.fullname" . }}
+  labels:
+    app: {{ template "nsqd.name" . }}
+    chart: {{ template "nsqd.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "nsqd.name" . }}
+      release: {{ .Release.Name }}
+  replicas: {{ .Values.nsqdReplicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "nsqd.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: {{ template "nsqd.name" . }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        - name: NSQLOOKUP_ADDRESS
+          value: "{{ template "nsqlookup.fullname" . }}.default.svc.cluster.local"
+        - name: NSQ_BROADCAST_ADDRESS
+          value: "{{ template "nsqd.fullname" . }}.default.svc.cluster.local"
+        command: ["/nsqd"]
+        args: ["--lookupd-tcp-address=$(NSQLOOKUP_ADDRESS):4160","--broadcast-address=$(NSQ_BROADCAST_ADDRESS)","--max-req-timeout=3h0m0s","--max-msg-timeout=1h0m0s","--data-path=/data","--mem-queue-size=0"]
+        ports:
+        - containerPort: 4150
+          hostPort: 4150
+        - containerPort: 4151
+          hostPort: 4151
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: 4151
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: 4151
+          initialDelaySeconds: 5
+          timeoutSeconds: 1          
+        resources:
+{{ toYaml .Values.resources | indent 12 }}
+        volumeMounts:
+        - name: data
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "{{ .Values.dataVolumeClaim.storageClassName }}"
+      resources:
+        requests:
+          storage: "{{ .Values.dataVolumeClaim.storage }}"
