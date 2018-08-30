@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  nsq:
+  - apiVersion: v1
+    created: 2018-08-30T15:31:14.826263824+03:00
+    description: A Helm chart for nsq
+    digest: aa4d9e8c746ce13e3219df54caeb05f27eb4af6528c232284aef89a2bc219a2c
+    name: nsq
+    urls:
+    - https://augurysys.github.io/charts/nsq-0.1.0.tgz
+    version: 0.1.0
+generated: 2018-08-30T15:31:14.825830243+03:00

@@ -13,6 +13,6 @@ $ # define chart contents
 $ helm package mychart
 $ mv mychart-<version>.tgz docs
 $ # update index.yaml
-$ helm repo index docs --url https://augurysys.github.com/charts
+$ helm repo index docs --url https://augurysys.github.io/charts
 $ # commit changes, push, and open PR
 ```
