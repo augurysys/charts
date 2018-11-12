@@ -10,6 +10,9 @@ image:
   tag: v1.0.0-compat
   pullPolicy: IfNotPresent
 
+service:
+  type: LoadBalancer
+
 dataVolumeClaim:
   storageClassName: faster
   storage: 512Mi
