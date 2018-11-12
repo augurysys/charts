@@ -23,4 +23,3 @@ spec:
     app: {{ template "nsqlookup.name" . }}
     release: {{ .Release.Name }}
   type: {{ .Values.service.type }}
-  clusterIP: None

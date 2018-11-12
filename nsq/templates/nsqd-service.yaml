@@ -22,4 +22,3 @@ spec:
   selector:
     app: nsqd
   type: {{ .Values.service.type }}
-  clusterIP: None
