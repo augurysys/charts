@@ -2,17 +2,13 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-nsqlookupdReplicaCount: 2
-nsqdReplicaCount: 2
-nsqadminReplicaCount: 1
+nsqlookupReplicaCount: 1
+nsqdReplicaCount: 1
 
 image:
   repository: nsqio/nsq
-  tag: v1.1.0
+  tag: v1.0.0-compat
   pullPolicy: IfNotPresent
-
-service:
-  type: ClusterIP
 
 dataVolumeClaim:
   storageClassName: faster

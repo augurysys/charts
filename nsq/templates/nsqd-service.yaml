@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nsqd 
+  name: {{ template "nsqd.fullname" . }}
   labels:
-    app: nsqd
+    app: {{ template "nsqd.name" . }}
     chart: {{ template "nsqd.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -19,5 +19,4 @@ spec:
     targetPort: 4151
   selector:
     app: nsqd
-    release: {{ .Release.Name }}
   clusterIP: None

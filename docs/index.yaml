@@ -2,27 +2,10 @@ apiVersion: v1
 entries:
   nsq:
   - apiVersion: v1
-    created: 2018-11-19T13:54:04.722070181+02:00
-    description: A Helm chart for nsq
-    digest: 9263a42a7d047e2d7921a1cd0183b260d4ca91bd374700714975db4a4243dc86
-    name: nsq
-    urls:
-    - https://augurysys.github.io/charts/nsq-0.3.0.tgz
-    version: 0.3.0
-  - apiVersion: v1
-    created: 2018-11-19T13:54:04.721778569+02:00
-    description: A Helm chart for nsq
-    digest: d9696b0aab133ec43dfacf3ca30e1c11ff594468b079ce4db7b46220a6dd7992
-    name: nsq
-    urls:
-    - https://augurysys.github.io/charts/nsq-0.2.0.tgz
-    version: 0.2.0
-  - apiVersion: v1
-    created: 2018-11-19T13:54:04.72118153+02:00
+    created: 2018-12-29T10:21:31.604251+02:00
     description: A Helm chart for nsq
     digest: aa4d9e8c746ce13e3219df54caeb05f27eb4af6528c232284aef89a2bc219a2c
     name: nsq
     urls:
     - https://augurysys.github.io/charts/nsq-0.1.0.tgz
     version: 0.1.0
-generated: 2018-11-19T13:54:04.719742103+02:00
