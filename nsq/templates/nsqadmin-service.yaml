@@ -1,23 +1,19 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nsqd 
+  name: "nsqadmin"
   labels:
-    app: nsqd
+    app: "nsqadmin"
     chart: {{ template "nsqd.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   ports:
-  - name: main
+  - name: http 
     protocol: TCP
-    port: 4150
-    targetPort: 4150
-  - name: secondary
-    protocol: TCP
-    port: 4151
-    targetPort: 4151
+    port: 80
+    targetPort: 4171
   selector:
-    app: nsqd
+    app: "nsqadmin"
     release: {{ .Release.Name }}
-  clusterIP: None
+  type: {{ .Values.service.type }}

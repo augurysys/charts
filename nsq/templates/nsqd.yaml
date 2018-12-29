@@ -1,36 +1,41 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ template "nsqd.fullname" . }}
+  name: nsqd
   labels:
-    app: {{ template "nsqd.name" . }}
+    app: nsqd
     chart: {{ template "nsqd.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  serviceName: nsqd
   selector:
     matchLabels:
-      app: {{ template "nsqd.name" . }}
+      app: nsqd
       release: {{ .Release.Name }}
   replicas: {{ .Values.nsqdReplicaCount }}
   template:
     metadata:
       labels:
-        app: {{ template "nsqd.name" . }}
+        app: nsqd
         release: {{ .Release.Name }}
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: {{ template "nsqd.name" . }}
+      - name: nsqd
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        env:
-        - name: NSQLOOKUP_ADDRESS
-          value: "{{ template "nsqlookup.fullname" . }}.default.svc.cluster.local"
-        - name: NSQ_BROADCAST_ADDRESS
-          value: "{{ template "nsqd.fullname" . }}.default.svc.cluster.local"
-        command: ["/nsqd"]
-        args: ["--lookupd-tcp-address=$(NSQLOOKUP_ADDRESS):4160","--broadcast-address=$(NSQ_BROADCAST_ADDRESS)","--max-req-timeout=3h0m0s","--max-msg-timeout=1h0m0s","--data-path=/data","--mem-queue-size=0"]
+        command: ["sh", "-c"]
+        args:
+        - | 
+          /nsqd -broadcast-address=$HOSTNAME.nsqd.default.svc.cluster.local \
+          --max-req-timeout=3h0m0s \
+          --max-msg-timeout=1h0m0s \
+          {{- range $i, $e := until (int .Values.nsqlookupdReplicaCount) }}
+          --lookupd-tcp-address=nsqlookupd-{{ $i }}.nsqlookupd.default.svc.cluster.local:4160 \
+          {{- end}}
+          --data-path=/data \
+          --mem-queue-size=0
         ports:
         - containerPort: 4150
           hostPort: 4150

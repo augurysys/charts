@@ -1,33 +1,32 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: {{ template "nsqlookup.fullname" . }}
+  name: nsqlookupd
   labels:
-    app: {{ template "nsqlookup.name" . }}
+    app: nsqlookupd
     chart: {{ template "nsqd.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  serviceName: nsqlookupd
   selector:
     matchLabels:
-      app: {{ template "nsqlookup.name" . }}
+      app: nsqlookupd
       release: {{ .Release.Name }}
-  replicas: {{ .Values.nsqlookupReplicaCount }}
+  replicas: {{ .Values.nsqlookupdReplicaCount }}
   template:
     metadata:
       labels:
-        app: {{ template "nsqlookup.name" . }}
+        app: nsqlookupd
         release: {{ .Release.Name }}
     spec:
       containers:
-      - name: {{ template "nsqlookup.name" . }}
+      - name: nsqlookupd
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        env:
-        - name: NSQLOOKUP_ADDRESS
-          value: "{{ template "nsqlookup.fullname" . }}.default.svc.cluster.local"        
-        command: ["/nsqlookupd"]
-        args: ["--broadcast-address=${NSQLOOKUP_ADDRESS}"]
+        command: ["sh", "-c"]
+        args: 
+        - /nsqlookupd --broadcast-address=$HOSTNAME.nsqlookupd.default.svc.cluster.local
         ports:
         - containerPort: 4160
           hostPort: 4160
