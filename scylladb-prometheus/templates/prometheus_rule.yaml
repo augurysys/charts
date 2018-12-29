@@ -1,0 +1,51 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "scylladb-prometheus.fullname" . }}
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: {{ include "scylladb-prometheus.name" . }}
+    helm.sh/chart: {{ include "scylladb-prometheus.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    prometheus: kube-prometheus
+    role: alert-rules
+spec:
+  groups:
+  - name: scylla.rules
+    rules:
+    - alert: InstanceDown
+      expr: up{endpoint="node-metrics",service="scylladb-prometheus-prometheus"} == 0
+      for: 30s
+      labels:
+        severity: "2"
+      annotations:
+        description: '{{`{{$labels.instance}}`}} has been down for more than 30 seconds.'
+        summary: Instance {{`{{$labels.instance}}`}} down
+    - alert: DiskFull
+      expr: node_filesystem_avail{mountpoint="/mnt/disks/data",service="scylladb-prometheus"} / node_filesystem_size{mountpoint="/mnt/disks/data",service="scylladb-prometheus"}
+        * 100 < 25
+      for: 30s
+      labels:
+        severity: "2"
+      annotations:
+        description: '{{`{{$labels.instance}}`}} has less than 25% free disk space.'
+        summary: Instance {{`{{$labels.instance}}`}}` low disk space
+    - alert: DiskFull
+      expr: node_filesystem_avail{mountpoint="/mnt/disks/data",service="scylladb-prometheus"} / node_filesystem_size{mountpoint="/mnt/disks/data",service="scylladb-prometheus"}
+        * 100 < 10
+      for: 30s
+      labels:
+        severity: "3"
+      annotations:
+        description: '{{`{{$labels.instance}}`}} has less than 10% free disk space.'
+        summary: Instance {{`{{$labels.instance}}`}} low disk space
+    - alert: DiskFull
+      expr: node_filesystem_avail{mountpoint="/mnt/disks/data",service="scylladb-prometheus"} / node_filesystem_size{mountpoint="/mnt/disks/data",service="scylladb-prometheus"}
+        * 100 < 1
+      for: 30s
+      labels:
+        severity: "4"
+      annotations:
+        description: '{{`{{$labels.instance}}`}} has less than 1% free disk space.'
+        summary: Instance {{`{{$labels.instance}}`}} low disk space

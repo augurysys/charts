@@ -1,0 +1,6 @@
+endpoints:
+  subsets:
+    addresses:
+    - ip: 10.178.0.2 
+    - ip: 10.178.0.3
+    - ip: 10.178.0.4
