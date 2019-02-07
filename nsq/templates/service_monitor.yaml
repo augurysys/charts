@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: nsqd
+  namespace: monitoring 
+  labels:
+    app.kubernetes.io/name: {{ include "nsqd.name" . }}
+    helm.sh/chart: {{ include "nsqd.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    prometheus: kube-prometheus
+spec:
+  endpoints:
+  - port: metrics
+    interval: 15s
+    honorLabels: true
+    scheme: http    
+  selector:
+    matchLabels:
+      app: nsqd
+      release: {{ .Release.Name }}
+  namespaceSelector:
+    matchNames:
+    - default
