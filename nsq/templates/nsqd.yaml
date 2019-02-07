@@ -26,7 +26,7 @@ spec:
         image: emaincourt/nsq_exporter:1.1.0
         imagePullPolicy: Always
         args:
-        - -nsqd.addr=http://nsqd:4151/stats -collect stats.topics,stats.channels
+        - -nsqd.addr=http://nsqd:4151/stats
         ports:
         - containerPort: 9117
           hostPort: 9117
