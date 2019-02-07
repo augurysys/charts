@@ -17,6 +17,10 @@ spec:
     protocol: TCP
     port: 4151
     targetPort: 4151
+  - name: metrics
+    protocol: TCP
+    port: 9117
+    targetPort: 9117    
   selector:
     app: nsqd
     release: {{ .Release.Name }}

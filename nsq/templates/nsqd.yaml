@@ -22,6 +22,14 @@ spec:
     spec:
       terminationGracePeriodSeconds: 10
       containers:
+      - name: nsq-exporter
+        image: emaincourt/nsq_exporter:1.1.0
+        imagePullPolicy: Always
+        args:
+        - -nsqd.addr=http://nsqd:4151/stats -collect stats.topics,stats.channels
+        ports:
+        - containerPort: 9117
+          hostPort: 9117
       - name: nsqd
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
