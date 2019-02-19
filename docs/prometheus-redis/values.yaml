@@ -1,0 +1,5 @@
+
+
+prometheus-redis-exporter:
+  redisAddress:
+  fullnameOverride: prometheus-redis-exporter
