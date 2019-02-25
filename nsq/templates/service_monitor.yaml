@@ -8,7 +8,7 @@ metadata:
     helm.sh/chart: {{ include "nsqd.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-    prometheus: kube-prometheus
+    release: prometheus-operator
 spec:
   endpoints:
   - port: metrics
