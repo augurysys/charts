@@ -16,7 +16,7 @@ spec:
     rules:
     - alert: EventsTopicChannelOverflow
       annotations:
-        message: Channel {{ $labels.channel }} not clearing up with {{ $value }} messages in queue for 5 min.
+        message: Channel {{`{{ $labels.channel }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 5 min.
       expr: 'sum(nsq_channel_depth{topic="events", paused="false",job="nsqd"}) by (channel) > 0'
       for: 5m
       labels:
