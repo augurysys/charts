@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  creationTimestamp: null
+  name: nsqd
+  namespace: monitoring 
+  labels:
+    app.kubernetes.io/name: {{ include "nsqd.name" . }}
+    helm.sh/chart: {{ include "nsqd.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    release: prometheus-operator
+spec:
+  groups:
+  - name: nsqd.rules
+    rules:
+    - alert: EventsTopicChannelOverflow
+      annotations:
+        message: Channel {{ $labels.channel }} not clearing up with {{ $value }} messages in queue for 5 min.
+      expr: 'sum(nsq_channel_depth{topic="events", paused="false",job="nsqd"}) by (channel) > 0'
+      for: 5m
+      labels:
+        severity: critical
