@@ -14,10 +14,17 @@ spec:
   groups:
   - name: nsqd.rules
     rules:
-    - alert: EventsTopicChannelOverflow
+    - alert: NsqdChannelOverflow
       annotations:
         message: Channel {{`{{ $labels.channel }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 5 min.
-      expr: 'sum(nsq_channel_depth{topic="events", paused="false",job="nsqd"}) by (channel) > 0'
+      expr: 'sum(nsq_channel_depth{topic=~"events|tasks|alerts", paused="false",job="nsqd"}) by (channel) > 0'
       for: 5m
+      labels:
+        severity: critical
+    - alert: NsqdTopicOverflow
+      annotations:
+        message: Topic {{`{{ $labels.Topic }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 30 min.
+      expr: 'sum(nsq_channel_depth{topic=~"algo.*", paused="false",job="nsqd"}) by (topic,channel) > 500'
+      for: 30m
       labels:
         severity: critical
