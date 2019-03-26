@@ -15,10 +15,20 @@ spec:
     interval: 15s
     honorLabels: true
     scheme: http
+    relabelings:
+    - sourceLabels: [__meta_kubernetes_service_label_cluster]
+      targetLabel: cluster    
+    - sourceLabels: [__meta_kubernetes_service_label_dc]
+      targetLabel: dc    
   - port: metrics
     interval: 15s
     honorLabels: true
     scheme: http    
+    relabelings:
+    - sourceLabels: [__meta_kubernetes_service_label_cluster]
+      targetLabel: cluster    
+    - sourceLabels: [__meta_kubernetes_service_label_dc]
+      targetLabel: dc
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "prometheus-scylladb.name" . }}
