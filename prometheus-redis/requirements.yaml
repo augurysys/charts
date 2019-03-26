@@ -1,4 +1,0 @@
-dependencies:
-  - name: prometheus-redis-exporter
-    version: 1.0.2
-    repository: "@stable"
