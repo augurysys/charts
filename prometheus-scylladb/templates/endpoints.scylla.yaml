@@ -8,9 +8,11 @@ metadata:
   helm.sh/chart: {{ include "prometheus-scylladb.chart" . }}
   app.kubernetes.io/instance: {{ .Release.Name }}
   app.kubernetes.io/managed-by: {{ .Release.Service }}
+  cluster: {{ .Values.scylla.cluster }}
+  dc: {{ .Values.scylla.dc }}     
 subsets:
   - addresses:
-{{ toYaml .Values.endpoints.subsets.addresses | indent 6 }}
+{{ toYaml .Values.scylla.endpoints.subsets.addresses | indent 6 }}
     ports:
     - name: node-metrics
       port: 9100

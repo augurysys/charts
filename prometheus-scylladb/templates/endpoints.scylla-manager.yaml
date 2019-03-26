@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+ name: scylla-manager
+ namespace: monitoring
+ labels:
+  app.kubernetes.io/name: scylla-manager
+  helm.sh/chart: {{ include "prometheus-scylladb.chart" . }}
+  app.kubernetes.io/instance: {{ .Release.Name }}
+  app.kubernetes.io/managed-by: {{ .Release.Service }}
+subsets:
+  - addresses:
+{{ toYaml .Values.scylla-manager.endpoints.subsets.addresses | indent 6 }}
+    ports:
+    - name: metrics
+      port: 9180
+      protocol: TCP

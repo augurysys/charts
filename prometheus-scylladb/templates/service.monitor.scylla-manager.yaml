@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "prometheus-scylladb.fullname" . }}
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: scylla-manager
+    helm.sh/chart: {{ include "prometheus-scylladb.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    release: prometheus-operator
+spec:
+  endpoints:
+  - port: metrics
+    interval: 15s
+    honorLabels: true
+    scheme: http
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: scylla-manager
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  namespaceSelector:
+    matchNames:
+    - monitoring
