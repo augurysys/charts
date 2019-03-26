@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "prometheus-scylladb.fullname" . }}
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: {{ include "prometheus-scylladb.name" . }}
+    helm.sh/chart: {{ include "prometheus-scylladb.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    cluster: {{ .Values.scylla.cluster }}
+    dc: {{ .Values.scylla.dc }}    
+spec:
+  type: ClusterIP
+  ports:
+    - name: node-metrics
+      port: 9100
+      protocol: TCP
+      targetPort: node-metrics
+    - name: metrics
+      port: 9180
+      protocol: TCP
+      targetPort: metrics

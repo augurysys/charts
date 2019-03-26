@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ include "prometheus-scylladb.fullname" . }}
+  name: scylla-manager
   namespace: monitoring
   labels:
     app.kubernetes.io/name: scylla-manager
