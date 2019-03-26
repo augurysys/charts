@@ -1,3 +1,4 @@
+{{- if .Values.scyllaManager.enabled }}
 apiVersion: v1
 kind: Endpoints
 metadata:
@@ -10,8 +11,9 @@ metadata:
   app.kubernetes.io/managed-by: {{ .Release.Service }}
 subsets:
   - addresses:
-{{ toYaml .Values.scylla-manager.endpoints.subsets.addresses | indent 6 }}
+{{ toYaml .Values.scyllaManager.endpoints.subsets.addresses | indent 6 }}
     ports:
     - name: metrics
       port: 9180
       protocol: TCP
+{{- end }      

@@ -1,3 +1,5 @@
 scylla:
   cluster: production
   dc: gcp-us-east1
+scyllaManager:
+  enabled: true

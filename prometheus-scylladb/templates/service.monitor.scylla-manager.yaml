@@ -1,3 +1,4 @@
+{{- if .Values.scyllaManager.enabled }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -22,3 +23,4 @@ spec:
   namespaceSelector:
     matchNames:
     - monitoring
+{{- end }}
