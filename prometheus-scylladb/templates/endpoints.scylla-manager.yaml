@@ -16,4 +16,4 @@ subsets:
     - name: metrics
       port: 9180
       protocol: TCP
-{{- end }      
+{{- end }}      
