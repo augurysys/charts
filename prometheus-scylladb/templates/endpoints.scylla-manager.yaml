@@ -9,13 +9,11 @@ metadata:
   helm.sh/chart: {{ include "prometheus-scylladb.chart" . }}
   app.kubernetes.io/instance: {{ .Release.Name }}
   app.kubernetes.io/managed-by: {{ .Release.Service }}
-  cluster: {{ .Values.scylla.cluster }}
-  dc: {{ .Values.scylla.dc }}      
 subsets:
   - addresses:
 {{ toYaml .Values.scyllaManager.endpoints.subsets.addresses | indent 6 }}
     ports:
     - name: metrics
-      port: 9180
+      port: 56090
       protocol: TCP
 {{- end }}      
