@@ -8,8 +8,7 @@ metadata:
     helm.sh/chart: {{ include "prometheus-scylladb.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-    prometheus: kube-prometheus
-    role: alert-rules
+    release: prometheus-operator
 spec:
   groups:
   - name: scylla.rules
