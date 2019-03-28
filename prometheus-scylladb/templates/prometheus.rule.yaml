@@ -15,37 +15,45 @@ spec:
   - name: scylla.rules
     rules:
     - alert: InstanceDown
-      expr: up{endpoint="node-metrics",service="prometheus-scylladb-prometheus"} == 0
+      expr: up{endpoint="metrics",service=~"prometheus-scylladb|scylla-manager"} == 0
       for: 30s
       labels:
-        severity: "2"
+        severity: critical
       annotations:
         description: '{{`{{$labels.instance}}`}} has been down for more than 30 seconds.'
-        summary: Instance {{`{{$labels.instance}}`}} down
+        message: Instance {{`{{$labels.instance}}`}} down
     - alert: DiskFull
       expr: node_filesystem_avail{mountpoint="/mnt/disks/data",service="prometheus-scylladb"} / node_filesystem_size{mountpoint="/mnt/disks/data",service="prometheus-scylladb"}
         * 100 < 25
       for: 30s
       labels:
-        severity: "2"
+        severity: warning
       annotations:
         description: '{{`{{$labels.instance}}`}} has less than 25% free disk space.'
-        summary: Instance {{`{{$labels.instance}}`}}` low disk space
+        message: Instance {{`{{$labels.instance}}`}}` low disk space
     - alert: DiskFull
       expr: node_filesystem_avail{mountpoint="/mnt/disks/data",service="prometheus-scylladb"} / node_filesystem_size{mountpoint="/mnt/disks/data",service="prometheus-scylladb"}
         * 100 < 10
       for: 30s
       labels:
-        severity: "3"
+        severity: critical
       annotations:
         description: '{{`{{$labels.instance}}`}} has less than 10% free disk space.'
-        summary: Instance {{`{{$labels.instance}}`}} low disk space
+        message: Instance {{`{{$labels.instance}}`}} low disk space
     - alert: DiskFull
       expr: node_filesystem_avail{mountpoint="/mnt/disks/data",service="prometheus-scylladb"} / node_filesystem_size{mountpoint="/mnt/disks/data",service="prometheus-scylladb"}
         * 100 < 1
       for: 30s
       labels:
-        severity: "4"
+        severity: critical
       annotations:
         description: '{{`{{$labels.instance}}`}} has less than 1% free disk space.'
-        summary: Instance {{`{{$labels.instance}}`}} low disk space
+        message: Instance {{`{{$labels.instance}}`}} low disk space
+    - alert: NoCql
+      expr: scylla_manager_healthcheck_cql_status == -1
+      for: 30s
+      labels:
+        severity: warning
+      annotations:
+        description: '{{ $labels.host }} has denied cql connection for more than 30 seconds.'
+        message: Instance {{ $labels.host }} no cql connection
