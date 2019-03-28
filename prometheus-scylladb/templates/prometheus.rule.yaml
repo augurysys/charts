@@ -55,5 +55,5 @@ spec:
       labels:
         severity: warning
       annotations:
-        description: '{{ $labels.host }} has denied cql connection for more than 30 seconds.'
-        message: Instance {{ $labels.host }} no cql connection
+        description: '{{`{{ $labels.host }}`}} has denied cql connection for more than 30 seconds.'
+        message: Instance {{`{{ $labels.host }}`}} no cql connection
