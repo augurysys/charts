@@ -23,8 +23,22 @@ spec:
         severity: critical
     - alert: NsqdTopicOverflow
       annotations:
-        message: Topic {{`{{ $labels.Topic }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 30 min.
+        message: Topic {{`{{ $labels.topic }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 60 min.
       expr: 'sum(nsq_channel_depth{topic=~"algo.*", paused="false",job="nsqd"}) by (topic,channel) > 500'
+      for: 60m
+      labels:
+        severity: warning
+    - alert: NsqdTopicOverflow
+      annotations:
+        message: Topic {{`{{ $labels.topic }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 30 min.
+      expr: 'sum(nsq_channel_depth{topic=~"algo.*", paused="false",job="nsqd"}) by (topic,channel) > 1000'
       for: 30m
+      labels:
+        severity: critical
+    - alert: NsqdTopicOverflow
+      annotations:
+        message: Topic {{`{{ $labels.topic }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 10 min.
+      expr: 'sum(nsq_channel_depth{topic=~"algo.*", paused="false",job="nsqd"}) by (topic,channel) > 1500'
+      for: 10m
       labels:
         severity: critical
