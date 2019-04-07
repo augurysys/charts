@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluentconf
+  labels:
+    app: {{ template "fluentd-kubernetes-daemonset.name" . }}
+    chart: {{ template "fluentd-kubernetes-daemonset.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  namespace: {{ .Release.Namespace }}
+data:
+  fluent.conf: |
+    @include kubernetes.conf
+
+    <match **>
+      @type remote_syslog
+      @id out_remote_syslog
+      host "data.logentries.com"
+      port "10000"
+      protocol tcp
+      packet_size 65535
+      facility user
+      severity notice
+      program "fluentd"
+      <format>
+        @type single_value
+        message_key log
+        add_newline false
+      </format>
+    </match>

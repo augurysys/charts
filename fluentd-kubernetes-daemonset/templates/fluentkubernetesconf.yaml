@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluentkubernetesconf
+  labels:
+    app: {{ template "fluentd-kubernetes-daemonset.name" . }}
+    chart: {{ template "fluentd-kubernetes-daemonset.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  namespace: {{ .Release.Namespace }} 
+data:
+  kubernetes.conf: |
+    <match fluent.**>
+      @type null
+    </match>
+
+    <filter **>
+      @type kubernetes_metadata
+      @id filter_kube_metadata
+    </filter>
+{{- range .Values.services }}
+
+    <source>
+      @type tail
+      @id in_tail_{{ .name }}_container_logs
+      path /var/log/containers/*{{ .name }}*.log
+      pos_file /var/log/fluentd-containers-{{ .name }}.log.pos
+      tag {{ .name }}
+      read_from_head true
+      format json
+    </source>
+
+    <filter {{ .name }}>
+      @type record_transformer
+      <record>
+        log '{{ .token }} {{ .name }} ${record["log"]}'
+      </record>
+    </filter>
+{{- end }}

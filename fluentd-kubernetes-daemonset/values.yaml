@@ -1,0 +1,11 @@
+image:
+  repository: docker.io/augury/fluentd-kubernetes-daemonset
+  tag: debian-syslog
+  pullPolicy: Always
+
+resources:
+  limits:
+    memory: 800Mi
+  requests:
+    cpu: 100m
+    memory: 800Mi
