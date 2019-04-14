@@ -12,7 +12,7 @@ data:
   config.yaml: |
     externalRules:
 {{- if .Values.externalRules.custom }}
-{{ toYaml .Values.rules.custom | indent 4 }}
+{{ toYaml .Values.externalRules.custom | indent 4 }}
 {{- end -}}
     rules:
 {{- if .Values.rules.default }}
