@@ -16,7 +16,7 @@ service:
 
 dataVolumeClaim:
   storageClassName: faster
-  storage: 512Mi
+  storage: 4Gi
 
 resources:
   limits:
