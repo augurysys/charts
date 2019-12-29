@@ -44,7 +44,7 @@ spec:
         severity: critical
     - alert: NsqdTopicNotActive
       annotations:
-        message: Topic {{`{{ $labels.topic }}`}} not active for 5 min.
+        message: Topic algo_feature_extraction_continuous not active for 5 min.
       expr: 'sum(nsq_channel_depth{topic="algo_feature_extraction_continuous", paused="false",job="nsqd"}) < 1'
       for: 5m
       labels:
