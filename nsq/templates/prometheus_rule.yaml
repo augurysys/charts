@@ -3,7 +3,7 @@ kind: PrometheusRule
 metadata:
   creationTimestamp: null
   name: nsqd
-  namespace: monitoring 
+  namespace: monitoring
   labels:
     app.kubernetes.io/name: {{ include "nsqd.name" . }}
     helm.sh/chart: {{ include "nsqd.chart" . }}
@@ -40,5 +40,12 @@ spec:
         message: Topic {{`{{ $labels.topic }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 10 min.
       expr: 'sum(nsq_channel_depth{topic=~"algo.*", paused="false",job="nsqd"}) by (topic,channel) > 1500'
       for: 10m
+      labels:
+        severity: critical
+    - alert: NsqdTopicNotActive
+      annotations:
+        message: Topic {{`{{ $labels.topic }}`}} not active for 5 min.
+      expr: 'sum(nsq_channel_depth{topic="algo_feature_extraction_continuous", paused="false",job="nsqd"}) < 1'
+      for: 5m
       labels:
         severity: critical
