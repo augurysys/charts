@@ -1,3 +1,4 @@
+{{- if and .Values.serviceMonitor.enabled .Values.serviceMonitor.alerting.rules }}
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
@@ -12,40 +13,5 @@ metadata:
     release: prometheus-operator
 spec:
   groups:
-  - name: nsqd.rules
-    rules:
-    - alert: NsqdChannelOverflow
-      annotations:
-        message: Channel {{`{{ $labels.channel }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 5 min.
-      expr: 'sum(nsq_channel_depth{topic=~"events|tasks|alerts", paused="false",job="nsqd"}) by (channel) > 0'
-      for: 5m
-      labels:
-        severity: critical
-    - alert: NsqdTopicOverflow
-      annotations:
-        message: Topic {{`{{ $labels.topic }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 60 min.
-      expr: 'sum(nsq_channel_depth{topic=~"algo.*", paused="false",job="nsqd"}) by (topic,channel) > 500'
-      for: 60m
-      labels:
-        severity: warning
-    - alert: NsqdTopicOverflow
-      annotations:
-        message: Topic {{`{{ $labels.topic }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 30 min.
-      expr: 'sum(nsq_channel_depth{topic=~"algo.*", paused="false",job="nsqd"}) by (topic,channel) > 1000'
-      for: 30m
-      labels:
-        severity: critical
-    - alert: NsqdTopicOverflow
-      annotations:
-        message: Topic {{`{{ $labels.topic }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 10 min.
-      expr: 'sum(nsq_channel_depth{topic=~"algo.*", paused="false",job="nsqd"}) by (topic,channel) > 1500'
-      for: 10m
-      labels:
-        severity: critical
-    - alert: NsqdTopicNotActive
-      annotations:
-        message: Topic algo_feature_extraction_continuous not active for 10 min.
-      expr: 'sum(nsq_channel_depth{topic="algo_feature_extraction_continuous", paused="false",job="nsqd"}) < 1'
-      for: 10m
-      labels:
-        severity: critical
+{{ toYaml .Values.serviceMonitor.alerting.rules | indent 4 }}
+{{- end }}
