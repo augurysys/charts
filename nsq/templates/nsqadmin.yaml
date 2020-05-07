@@ -27,7 +27,7 @@ spec:
         command: ["/nsqadmin"]
         args:
         {{- range $i, $e := until (int .Values.nsqlookupdReplicaCount) }}
-        - --lookupd-http-address=nsqlookupd-{{ $i }}.nsqlookupd.default.svc.cluster.local:4161
+        - --lookupd-http-address=nsqlookupd-{{ $i }}.nsqlookupd.{{ .Release.Namespace }}.svc.cluster.local:4161
         {{- end}}
         ports:
         - name: http
@@ -44,6 +44,6 @@ spec:
             path: /
             port: http
           initialDelaySeconds: 5
-          timeoutSeconds: 1      
+          timeoutSeconds: 1
         resources:
 {{ toYaml .Values.resources | indent 12 }}
