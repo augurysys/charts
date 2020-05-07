@@ -4,7 +4,7 @@ This repository contains augury's helm-charts.
 
 ### How it works
 
-GitHub Pages is set to point to `docs` folder. 
+GitHub Pages is set to point to `docs` folder.
 Adding new chart is done as follows:
 
 ```console
@@ -15,4 +15,9 @@ $ mv mychart-<version>.tgz docs
 $ # update index.yaml
 $ helm repo index docs --url https://augurysys.github.io/charts
 $ # commit changes, push, and open PR
+```
+In addition, the chart should be uploaded to gcs augury helm-repo
+```
+$ cd docs
+$ helm gcs push mychart-<version>.tgz augury
 ```
