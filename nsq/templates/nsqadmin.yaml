@@ -25,9 +25,12 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ["/nsqadmin"]
+        env:
+        - name: NAMESPACE
+          value: {{ .Release.Namespace }}
         args:
         {{- range $i, $e := until (int .Values.nsqlookupdReplicaCount) }}
-        - --lookupd-http-address=nsqlookupd-{{ $i }}.nsqlookupd.{{ .Release.Namespace }}.svc.cluster.local:4161
+        - --lookupd-http-address=nsqlookupd-{{ $i }}.nsqlookupd.$(NAMESPACE).svc.cluster.local:4161
         {{- end}}
         ports:
         - name: http

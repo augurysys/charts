@@ -25,8 +25,11 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ["sh", "-c"]
+        env:
+        - name: NAMESPACE
+          value: {{ .Release.Namespace }}
         args:
-        - /nsqlookupd --broadcast-address=$HOSTNAME.nsqlookupd.{{ .Release.Namespace }}.svc.cluster.local
+        - /nsqlookupd --broadcast-address=$HOSTNAME.nsqlookupd.$(NAMESPACE).svc.cluster.local
         ports:
         - containerPort: 4160
           hostPort: 4160

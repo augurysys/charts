@@ -26,8 +26,11 @@ spec:
         image: emaincourt/nsq_exporter:1.1.0
         imagePullPolicy: Always
         command: ["sh", "-c"]
+        env:
+        - name: NAMESPACE
+          value: {{ .Release.Namespace }}
         args:
-        - /nsq_exporter -nsqd.addr=http://$HOSTNAME.nsqd.{{ .Release.Namespace }}.svc.cluster.local:4151/stats
+        - /nsq_exporter -nsqd.addr=http://$HOSTNAME.nsqd.$(NAMESPACE).svc.cluster.local:4151/stats
         ports:
         - containerPort: 9117
           hostPort: 9117
@@ -35,13 +38,16 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ["sh", "-c"]
+        env:
+        - name: NAMESPACE
+          value: {{ .Release.Namespace }}
         args:
         - |
-          /nsqd -broadcast-address=$HOSTNAME.nsqd.{{ .Release.Namespace }}.svc.cluster.local \
+          /nsqd -broadcast-address=$HOSTNAME.nsqd.$(NAMESPACE).svc.cluster.local \
           --max-req-timeout=3h0m0s \
           --max-msg-timeout=1h0m0s \
           {{- range $i, $e := until (int .Values.nsqlookupdReplicaCount) }}
-          --lookupd-tcp-address=nsqlookupd-{{ $i }}.nsqlookupd.{{ .Release.Namespace }}.svc.cluster.local:4160 \
+          --lookupd-tcp-address=nsqlookupd-{{ $i }}.nsqlookupd.$(NAMESPACE).svc.cluster.local:4160 \
           {{- end}}
           --data-path=/data \
           --mem-queue-size=0
