@@ -35,13 +35,16 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ["sh", "-c"]
+        env:
+        - name: NAMEPSPACE
+          value: {{ .Release.Namespace }}
         args:
         - |
-          /nsqd -broadcast-address=$HOSTNAME.nsqd.{{ .Release.Namespace }}.svc.cluster.local \
+          /nsqd -broadcast-address=$HOSTNAME.nsqd.${NAMEPSACE}.svc.cluster.local \
           --max-req-timeout=3h0m0s \
           --max-msg-timeout=1h0m0s \
           {{- range $i, $e := until (int .Values.nsqlookupdReplicaCount) }}
-          --lookupd-tcp-address=nsqlookupd-{{ $i }}.nsqlookupd.{{ .Release.Namespace }}.svc.cluster.local:4160 \
+          --lookupd-tcp-address=nsqlookupd-{{ $i }}.nsqlookupd.${NAMEPSACE}.svc.cluster.local:4160 \
           {{- end}}
           --data-path=/data \
           --mem-queue-size=0
