@@ -27,7 +27,7 @@ spec:
         imagePullPolicy: Always
         command: ["sh", "-c"]
         args:
-        - /nsq_exporter -nsqd.addr=http://$HOSTNAME.nsqd.default.svc.cluster.local:4151/stats
+        - /nsq_exporter -nsqd.addr=http://$HOSTNAME.nsqd.{{ .Release.Namespace }}.svc.cluster.local:4151/stats
         ports:
         - containerPort: 9117
           hostPort: 9117
@@ -36,12 +36,12 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ["sh", "-c"]
         args:
-        - | 
-          /nsqd -broadcast-address=$HOSTNAME.nsqd.default.svc.cluster.local \
+        - |
+          /nsqd -broadcast-address=$HOSTNAME.nsqd.{{ .Release.Namespace }}.svc.cluster.local \
           --max-req-timeout=3h0m0s \
           --max-msg-timeout=1h0m0s \
           {{- range $i, $e := until (int .Values.nsqlookupdReplicaCount) }}
-          --lookupd-tcp-address=nsqlookupd-{{ $i }}.nsqlookupd.default.svc.cluster.local:4160 \
+          --lookupd-tcp-address=nsqlookupd-{{ $i }}.nsqlookupd.{{ .Release.Namespace }}.svc.cluster.local:4160 \
           {{- end}}
           --data-path=/data \
           --mem-queue-size=0
@@ -61,7 +61,7 @@ spec:
             path: /ping
             port: 4151
           initialDelaySeconds: 5
-          timeoutSeconds: 1          
+          timeoutSeconds: 1
         resources:
 {{ toYaml .Values.resources | indent 12 }}
         volumeMounts:
