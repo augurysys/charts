@@ -20,6 +20,15 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+          - configMapRef:
+              name: {{ .Chart.Name }}
+          - configMapRef:
+              name: augury-common-scylla
+          - secretRef:
+              name: {{ .Chart.Name }}
+          - secretRef:
+              name: augury-common-scylla
           # livenessProbe:
           #   httpGet:
           #     path: /
