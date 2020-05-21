@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ include "anomaly-detection-pipeline.name" . }}
+    chart: {{ include "anomaly-detection-pipeline.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  INPUT_PUBSUB_SUB: {{ .Values.envVars.inputPubsubSub }}
+  OUTPUT_PUBSUB_TOPIC: {{ .Values.envVars.outputPubsubTopic }}
