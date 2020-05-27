@@ -1,3 +1,4 @@
+{{- $secretMountPath := "/etc/gcloud/service-account.json" -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,10 +17,22 @@ spec:
         app.kubernetes.io/name: {{ include "anomaly-detection-pipeline.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+      volumes:
+      - name: "pipelines-permissions-service-account"
+        secret:
+          secretName: pipelines-permissions-service-account
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - name: "pipelines-permissions-service-account"
+              readOnly: true
+              mountPath: {{ $secretMountPath }}
+              subPath: service-account.json
+          env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: {{ $secretMountPath }}
           envFrom:
           - configMapRef:
               name: {{ .Chart.Name }}
