@@ -26,8 +26,6 @@ spec:
           - configMapRef:
               name: augury-common-scylla
           - secretRef:
-              name: {{ .Chart.Name }}
-          - secretRef:
               name: augury-common-scylla
           # livenessProbe:
           #   httpGet:
