@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "anomaly-detection-pipeline.fullname" . }}
+  name: {{ include "pipeline.fullname" . }}
   labels:
-{{ include "anomaly-detection-pipeline.labels" . | indent 4 }}
+{{ include "pipeline.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "anomaly-detection-pipeline.name" . }}
+      app.kubernetes.io/name: {{ include "pipeline.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "anomaly-detection-pipeline.name" . }}
+        app.kubernetes.io/name: {{ include "pipeline.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       volumes:
@@ -36,6 +36,8 @@ spec:
           envFrom:
           - configMapRef:
               name: {{ .Chart.Name }}
+          - configMapRef:
+              name: augury-common-services
           - configMapRef:
               name: augury-common-scylla
           - secretRef:

@@ -1,13 +1,15 @@
-# Default values for anomaly-detection-pipeline.
+# Default values for pipeline.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
+nameOverride:
+
 image:
   repository: us.gcr.io/production-02cb28ec
-  name: anomaly-detection-pipeline
-  tag: dockerize
+  name:
+  tag:
   pullPolicy: Always
 
 resources: {}
