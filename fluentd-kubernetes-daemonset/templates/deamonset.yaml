@@ -13,6 +13,10 @@ metadata:
     addonmanager.kubernetes.io/mode: "EnsureExists"
   namespace: {{ .Release.Namespace }}
 spec:
+  selector:
+    matchLabels:
+      app: {{ template "fluentd-kubernetes-daemonset.name" . }}
+      chart: {{ template "fluentd-kubernetes-daemonset.chart" . }}
   updateStrategy:
     type: RollingUpdate
   template:
