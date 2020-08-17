@@ -22,7 +22,7 @@ spec:
         secret:
           secretName: pipelines-permissions-service-account
       containers:
-        - name: {{ .Chart.Name }}
+        - name: {{ include "pipeline.name" . }}
           image: "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
@@ -35,7 +35,7 @@ spec:
               value: {{ $secretMountPath }}
           envFrom:
           - configMapRef:
-              name: {{ .Chart.Name }}
+              name: {{ include "pipeline.name" . }}
           - configMapRef:
               name: augury-common-services
           - configMapRef:
