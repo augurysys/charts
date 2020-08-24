@@ -33,6 +33,11 @@ spec:
           env:
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: {{ $secretMountPath }}
+            - name: PROJECT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: augury-common-services
+                  key: GOOGLE_PROJECT_ID
           envFrom:
           - configMapRef:
               name: {{ include "pipeline.name" . }}
