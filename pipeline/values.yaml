@@ -32,4 +32,4 @@ affinity: {}
 
 envVars:
   inputPubsubSub: temp
-  outputPubsubTopic: tump
+  outputPubsubTopic: temp

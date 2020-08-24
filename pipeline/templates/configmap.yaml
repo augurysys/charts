@@ -10,3 +10,12 @@ metadata:
 data:
   INPUT_PUBSUB_SUB: {{ .Values.envVars.inputPubsubSub }}
   OUTPUT_PUBSUB_TOPIC: {{ .Values.envVars.outputPubsubTopic }}
+  {{- with .Values.envVars.oauth2ClientId }}
+  OAUTH2_CLIENT_ID: {{ .Values.envVars.oauth2ClientId }}
+  {{- end }}
+  {{- with .Values.envVars.oauth2ClientSecret }}
+  OAUTH2_CLIENT_SECRET: {{ .Values.envVars.oauth2ClientSecret }}
+  {{- end }}
+  {{- with .Values.envVars.pubsubMachineProtobufsTopic }}
+  PUBSUB_MACHINE_PROTOBUFS_TOPIC: {{ . }}
+  {{- end }}
