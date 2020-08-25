@@ -19,3 +19,9 @@ data:
   {{- with .Values.envVars.pubsubMachineProtobufsTopic }}
   PUBSUB_MACHINE_PROTOBUFS_TOPIC: {{ . }}
   {{- end }}
+  {{- with .Values.envVars.rootStorageFolder }}
+  ROOT_STORAGE_FOLDER: {{ .Values.envVars.rootStorageFolder }}
+  {{- end }}
+  {{- with .Values.envVars.storageType }}
+  STORAGE_TYPE: {{ .Values.envVars.storageType }}
+  {{- end }}
