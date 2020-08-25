@@ -1,4 +1,4 @@
-# Augury charts repo
+# Augury charts repo - PUBLIC
 
 This repository contains augury's helm-charts.
 
