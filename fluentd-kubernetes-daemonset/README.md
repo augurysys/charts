@@ -17,14 +17,3 @@ Development cycle:
 1. make changes
 1. check the changes, if they are good, create a PR
 
-
-# Deployment
-
-Prerequisites:
-
-Assign cluster-admin role to triller
-
-```bash
-$ kubectl create serviceaccount -n kube-system tiller
-$ kubectl create clusterrolebinding tiller-binding --clusterrole=cluster-admin --serviceaccount kube-system:tiller
-```
