@@ -63,15 +63,14 @@ spec:
           - --endpoint-snitch
           - {{ .Values.config.endpointSnitch | quote }}
           {{- end }}
-        lifecycle:
-          preStop:
-            exec:
-              command: ["/usr/bin/nodetool","decommission"]
         readinessProbe:
           exec:
             command: ["/bin/sh", "-c", "exec", "/opt/ready-probe.sh"]
           initialDelaySeconds: 15
           timeoutSeconds: 5
+        # livenessProbe:
+        #   exec:
+        #     command: ["cqlsh", "-e", "select", "*", "from", "system.local;"]
         volumeMounts:
           - name: scylla-ready-probe
             mountPath: /opt/ready-probe.sh

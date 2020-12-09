@@ -4,7 +4,7 @@ description: Scylla is an open-source distributed NoSQL data store. It was desig
              Apache Cassandra while achieving significantly higher throughputs and lower latencies.
 icon: https://www.scylladb.com/wp-content/uploads/sea-monster-speed-racer-01.png
 name: scylladb
-version: 0.1.1
+version: 0.1.2
 keywords:
   - scylla
   - nosql
