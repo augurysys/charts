@@ -24,9 +24,14 @@ resources: {}
   #   cpu: 100m
   #   memory: 128Mi
 
-nodeSelector: {}
+tolerations:
+  - key: cloud.google.com/gke-preemptible
+    operator: Equal
+    value: "true"
+    effect: NoSchedule
+nodeSelector:
+  cloud.google.com/gke-preemptible: "true"
 
-tolerations: []
 
 affinity: {}
 
