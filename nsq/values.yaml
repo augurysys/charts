@@ -25,17 +25,3 @@ resources:
   requests:
    cpu: 100m
    memory: 128Mi
-
-serviceMonitor:
-  enabled: false
-  alerting:
-    rules:
-    - name: nsqd.rules
-      rules:
-      - alert: NsqdTopicOverflow
-        annotations:
-          message: Topic {{`{{ $labels.topic }}`}} not clearing up with {{`{{ $value }}`}} messages in queue for 5 min.
-        expr: 'sum(nsq_channel_depth{topic=~"algo.*", paused="false",job="nsqd"}) by (topic,channel) > 5'
-        for: 5m
-        labels:
-          severity: warning
