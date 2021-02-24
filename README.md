@@ -8,8 +8,7 @@ GitHub Pages is set to point to `docs` folder.
 Adding new chart is done as follows:
 
 ```console
-$ # for new charts
-$ helm create mychart 
+$ helm create mychart # for new charts only
 $ # define chart contents
 $ helm package mychart
 $ mv mychart-<version>.tgz docs
