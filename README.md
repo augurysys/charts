@@ -8,7 +8,8 @@ GitHub Pages is set to point to `docs` folder.
 Adding new chart is done as follows:
 
 ```console
-$ helm create mychart
+$ # for new charts
+$ helm create mychart 
 $ # define chart contents
 $ helm package mychart
 $ mv mychart-<version>.tgz docs
@@ -16,7 +17,7 @@ $ # update index.yaml
 $ helm repo index docs --url https://augurysys.github.io/charts
 $ # commit changes, push, and open PR
 ```
-In addition, the chart should be uploaded to gcs augury helm-repo
+In addition, the chart should be uploaded to gcs augury helm-repo (for ODEs)
 ```
 $ cd docs
 $ helm gcs push mychart-<version>.tgz augury
