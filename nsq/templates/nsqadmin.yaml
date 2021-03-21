@@ -28,9 +28,11 @@ spec:
         env:
         - name: NAMESPACE
           value: {{ .Release.Namespace }}
+        - name: NSQLOOKUPDNAME
+          value: {{ .Values.nsqlookupd.name }}
         args:
         {{- range $i, $e := until (int .Values.nsqlookupdReplicaCount) }}
-        - --lookupd-http-address={{ .Values.nsqlookupd.name }}{{ $i }}.{{ .Values.nsqlookupd.name }}.$(NAMESPACE).svc.cluster.local:4161
+        - --lookupd-http-address=$(NSQLOOKUPDNAME)-{{ $i }}.$(NSQLOOKUPDNAME).$(NAMESPACE).svc.cluster.local:4161
         {{- end}}
         ports:
         - name: http
