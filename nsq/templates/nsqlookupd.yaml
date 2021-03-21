@@ -28,10 +28,10 @@ spec:
         env:
         - name: NAMESPACE
           value: {{ .Release.Namespace }}
-        - name: NSQLOOKUPDNAME
+        - name: NSQLOOKUPD-NAME
           value: { { .Values.nsqlookupd.name } }
         args:
-        - /nsqlookupd --broadcast-address=$HOSTNAME.$(NSQLOOKUPDNAME).$(NAMESPACE).svc.cluster.local
+        - /nsqlookupd --broadcast-address=$HOSTNAME.$(NSQLOOKUPD-NAME).$(NAMESPACE).svc.cluster.local
         ports:
         - containerPort: 4160
           hostPort: 4160

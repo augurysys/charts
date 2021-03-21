@@ -29,10 +29,10 @@ spec:
         env:
         - name: NAMESPACE
           value: {{ .Release.Namespace }}
-        - name: NSQDNAME
+        - name: NSQD-NAME
           value: {{ .Values.nsqd.name }}
         args:
-        - /nsq_exporter -nsqd.addr=http://$HOSTNAME.$(NSQDNAME).$(NAMESPACE).svc.cluster.local:4151/stats
+        - /nsq_exporter -nsqd.addr=http://$HOSTNAME.$(NSQD-NAME).$(NAMESPACE).svc.cluster.local:4151/stats
         ports:
         - containerPort: 9117
           hostPort: 9117
@@ -43,17 +43,17 @@ spec:
         env:
         - name: NAMESPACE
           value: {{ .Release.Namespace }}
-        - name: NSQDNAME
+        - name: NSQD-NAME
           value: { { .Values.nsqd.name } }
-        - name: NSQLOOKUPDNAME
+        - name: NSQLOOKUPD-NAME
           value: { { .Values.nsqlookupd.name } }
         args:
         - |
-          /nsqd -broadcast-address=$HOSTNAME.$(NSQDNAME).$(NAMESPACE).svc.cluster.local \
+          /nsqd -broadcast-address=$HOSTNAME.$(NSQD-NAME).$(NAMESPACE).svc.cluster.local \
           --max-req-timeout=3h0m0s \
           --max-msg-timeout=1h0m0s \
           {{- range $i, $e := until (int .Values.nsqlookupdReplicaCount) }}
-          --lookupd-tcp-address=$(NSQLOOKUPDNAME)-{{ $i }}.$(NSQLOOKUPDNAME).$(NAMESPACE).svc.cluster.local:4160 \
+          --lookupd-tcp-address=$(NSQLOOKUPD-NAME)-{{ $i }}.$(NSQLOOKUPD-NAME).$(NAMESPACE).svc.cluster.local:4160 \
           {{- end}}
           --data-path=/data \
           --mem-queue-size=0
