@@ -28,3 +28,13 @@ resources:
 
 serviceMonitor:
   enabled: false
+
+nsqadmin:
+  name: nsqadmin
+
+nsqd:
+  name: nsqd
+  volumeClaimTemplatesName: data
+
+nsqlookupd:
+  name: nsqlookupd

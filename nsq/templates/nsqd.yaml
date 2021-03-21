@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: nsqd
+  name: {{ .Values.nsqd.name }}
   labels:
-    app: nsqd
+    app: {{ .Values.nsqd.name }}
     chart: {{ template "nsqd.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  serviceName: nsqd
+  serviceName: {{ .Values.nsqd.name }}
   selector:
     matchLabels:
-      app: nsqd
+      app: {{ .Values.nsqd.name }}
       release: {{ .Release.Name }}
   replicas: {{ .Values.nsqdReplicaCount }}
   template:
     metadata:
       labels:
-        app: nsqd
+        app: {{ .Values.nsqd.name }}
         release: {{ .Release.Name }}
     spec:
       terminationGracePeriodSeconds: 10
@@ -29,25 +29,31 @@ spec:
         env:
         - name: NAMESPACE
           value: {{ .Release.Namespace }}
+        - name: NSQD-NAME
+          value: {{ .Values.nsqd.name }}
         args:
-        - /nsq_exporter -nsqd.addr=http://$HOSTNAME.nsqd.$(NAMESPACE).svc.cluster.local:4151/stats
+        - /nsq_exporter -nsqd.addr=http://$HOSTNAME.$(NSQD-NAME).$(NAMESPACE).svc.cluster.local:4151/stats
         ports:
         - containerPort: 9117
           hostPort: 9117
-      - name: nsqd
+      - name: {{ .Values.nsqd.name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ["sh", "-c"]
         env:
         - name: NAMESPACE
           value: {{ .Release.Namespace }}
+        - name: NSQD-NAME
+          value: {{ .Values.nsqd.name }}
+        - name: NSQLOOKUPD-NAME
+          value: {{ .Values.nsqlookupd.name }}
         args:
         - |
-          /nsqd -broadcast-address=$HOSTNAME.nsqd.$(NAMESPACE).svc.cluster.local \
+          /nsqd -broadcast-address=$HOSTNAME.$(NSQD-NAME).$(NAMESPACE).svc.cluster.local \
           --max-req-timeout=3h0m0s \
           --max-msg-timeout=1h0m0s \
           {{- range $i, $e := until (int .Values.nsqlookupdReplicaCount) }}
-          --lookupd-tcp-address=nsqlookupd-{{ $i }}.nsqlookupd.$(NAMESPACE).svc.cluster.local:4160 \
+          --lookupd-tcp-address=$(NSQLOOKUPD-NAME)-{{ $i }}.$(NSQLOOKUPD-NAME).$(NAMESPACE).svc.cluster.local:4160 \
           {{- end}}
           --data-path=/data \
           --mem-queue-size=0
@@ -71,11 +77,11 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 12 }}
         volumeMounts:
-        - name: data
+        - name: {{ .Values.nsqd.volumeClaimTemplatesName }}
           mountPath: /data
   volumeClaimTemplates:
   - metadata:
-      name: data
+      name: {{ .Values.nsqd.volumeClaimTemplatesName }}
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: "{{ .Values.dataVolumeClaim.storageClassName }}"

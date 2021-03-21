@@ -1,36 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "nsqadmin"
+  name: {{ .Values.nsqadmin.name }}
   labels:
-    app: "nsqadmin"
+    app: {{ .Values.nsqadmin.name }}
     chart: {{ template "nsqd.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   selector:
     matchLabels:
-      app: "nsqadmin"
+      app: {{ .Values.nsqadmin.name }}
       release: {{ .Release.Name }}
   replicas: {{ .Values.nsqadminReplicaCount }}
   template:
     metadata:
       labels:
-        app: "nsqadmin"
+        app: {{ .Values.nsqadmin.name }}
         release: {{ .Release.Name }}
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: "nsqadmin"
+      - name: {{ .Values.nsqadmin.name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ["/nsqadmin"]
         env:
         - name: NAMESPACE
           value: {{ .Release.Namespace }}
+        - name: NSQLOOKUPD-NAME
+          value: {{ .Values.nsqlookupd.name }}
         args:
         {{- range $i, $e := until (int .Values.nsqlookupdReplicaCount) }}
-        - --lookupd-http-address=nsqlookupd-{{ $i }}.nsqlookupd.$(NAMESPACE).svc.cluster.local:4161
+        - --lookupd-http-address=$(NSQLOOKUPD-NAME)-{{ $i }}.$(NSQLOOKUPD-NAME).$(NAMESPACE).svc.cluster.local:4161
         {{- end}}
         ports:
         - name: http

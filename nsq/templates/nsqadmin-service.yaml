@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: "nsqadmin"
+  name: {{ .Values.nsqadmin.name }}
   labels:
-    app: "nsqadmin"
+    app: {{ .Values.nsqadmin.name }}
     chart: {{ template "nsqd.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -14,6 +14,6 @@ spec:
     port: 80
     targetPort: 4171
   selector:
-    app: "nsqadmin"
+    app: {{ .Values.nsqadmin.name }}
     release: {{ .Release.Name }}
   type: {{ .Values.service.type }}
