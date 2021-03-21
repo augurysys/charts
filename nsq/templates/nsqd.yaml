@@ -44,9 +44,9 @@ spec:
         - name: NAMESPACE
           value: {{ .Release.Namespace }}
         - name: NSQD-NAME
-          value: { { .Values.nsqd.name } }
+          value: {{ .Values.nsqd.name }}
         - name: NSQLOOKUPD-NAME
-          value: { { .Values.nsqlookupd.name } }
+          value: {{ .Values.nsqlookupd.name }}
         args:
         - |
           /nsqd -broadcast-address=$HOSTNAME.$(NSQD-NAME).$(NAMESPACE).svc.cluster.local \

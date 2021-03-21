@@ -29,7 +29,7 @@ spec:
         - name: NAMESPACE
           value: {{ .Release.Namespace }}
         - name: NSQLOOKUPD-NAME
-          value: { { .Values.nsqlookupd.name } }
+          value: {{ .Values.nsqlookupd.name }}
         args:
         - /nsqlookupd --broadcast-address=$HOSTNAME.$(NSQLOOKUPD-NAME).$(NAMESPACE).svc.cluster.local
         ports:
