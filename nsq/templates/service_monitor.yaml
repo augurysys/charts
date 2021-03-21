@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: nsqd
+  name: {{ .Values.nsqd.name }}
   namespace: monitoring
   labels:
     app.kubernetes.io/name: {{ include "nsqd.name" . }}
@@ -18,7 +18,7 @@ spec:
     scheme: http
   selector:
     matchLabels:
-      app: nsqd
+      app: {{ .Values.nsqd.name }}
       release: {{ .Release.Name }}
   namespaceSelector:
     matchNames:
