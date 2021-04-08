@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ .Values.nsqd.name }}
   labels:
-    app: nsqd
+    app: {{ .Values.nsqd.name }}
     chart: {{ template "nsqd.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -20,7 +20,7 @@ spec:
   - name: metrics
     protocol: TCP
     port: 9117
-    targetPort: 9117    
+    targetPort: 9117
   selector:
     app: {{ .Values.nsqd.name }}
     release: {{ .Release.Name }}
