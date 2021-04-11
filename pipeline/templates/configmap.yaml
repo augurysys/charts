@@ -25,3 +25,6 @@ data:
   {{- with .Values.envVars.storageType }}
   STORAGE_TYPE: {{ . }}
   {{- end }}
+  {{- with .Values.envVars.persistMachineSamplesBucket }}
+  PERSIST_MACHINE_SAMPLES_BUCKET: {{ . }}
+  {{- end }}
