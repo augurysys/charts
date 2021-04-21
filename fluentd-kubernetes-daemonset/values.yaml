@@ -1,5 +1,5 @@
 image:
-  repository: fluent/fluentd-kubernetes-daemonset
+  repository: us.gcr.io/production-02cb28ec/fluentd-kubernetes-daemonset
   tag: v1-debian-syslog
   pullPolicy: Always
 
