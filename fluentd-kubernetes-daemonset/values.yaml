@@ -1,5 +1,5 @@
 image:
-  repository: docker.io/augury/fluentd-kubernetes-daemonset
+  repository: fluent/fluentd-kubernetes-daemonset
   tag: debian-syslog
   pullPolicy: Always
 
