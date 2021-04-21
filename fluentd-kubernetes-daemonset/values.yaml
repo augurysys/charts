@@ -1,6 +1,6 @@
 image:
   repository: fluent/fluentd-kubernetes-daemonset
-  tag: debian-syslog
+  tag: v1-debian-syslog
   pullPolicy: Always
 
 resources:

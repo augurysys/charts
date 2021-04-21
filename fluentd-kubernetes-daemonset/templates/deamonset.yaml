@@ -16,7 +16,7 @@ spec:
   selector:
     matchLabels:
       app: {{ template "fluentd-kubernetes-daemonset.name" . }}
-      chart: {{ template "fluentd-kubernetes-daemonset.chart" . }}
+      release: {{ .Release.Name }}
   updateStrategy:
     type: RollingUpdate
   template:
