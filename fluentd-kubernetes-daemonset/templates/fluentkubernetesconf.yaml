@@ -34,7 +34,7 @@ data:
     <filter {{ .name }}>
       @type record_transformer
       <record>
-        log '{{ .token }} [service={{ .name }}] [env={{ $envname }}] ${record["log"]}'
+        log '{{ .token }} [env={{ $envname }}] [service={{ .name }}] ${record["log"]}'
       </record>
     </filter>
 {{- end }}
