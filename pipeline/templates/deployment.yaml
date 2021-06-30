@@ -23,7 +23,7 @@ spec:
           secretName: pipelines-permissions-service-account
       containers:
         - name: {{ include "pipeline.name" . }}
-          image: "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
             - name: "pipelines-permissions-service-account"

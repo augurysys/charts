@@ -7,7 +7,7 @@ replicaCount: 1
 nameOverride:
 
 image:
-  repository: us.gcr.io/production-02cb28ec
+  registry: us.gcr.io/production-02cb28ec
   name:
   tag:
   pullPolicy: Always
