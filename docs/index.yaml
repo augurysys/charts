@@ -3,7 +3,7 @@ entries:
   fluentd-kubernetes-daemonset:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-05-05T14:35:26.21110924+03:00"
+    created: "2021-07-13T17:47:32.633904+03:00"
     description: A Helm chart for Kubernetes
     digest: 2fd3d1268967cd64f30607148589bd3ddb60276fe29b45417347d31e8d614f6c
     name: fluentd-kubernetes-daemonset
@@ -12,7 +12,7 @@ entries:
     version: 0.2.4
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-05-05T14:35:26.210227619+03:00"
+    created: "2021-07-13T17:47:32.631788+03:00"
     description: A Helm chart for Kubernetes
     digest: ed78b682a0e47e2ecb0d94dd41c8d7d6451eeb25f0abf6fd335327d67bd6db72
     name: fluentd-kubernetes-daemonset
@@ -21,7 +21,7 @@ entries:
     version: 0.2.3
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-05-05T14:35:26.209979831+03:00"
+    created: "2021-07-13T17:47:32.630522+03:00"
     description: A Helm chart for Kubernetes
     digest: 4ab9492f876b7552c38c45143574f88276a201b8ea25a5fd833fe709e9042701
     name: fluentd-kubernetes-daemonset
@@ -30,7 +30,7 @@ entries:
     version: 0.2.2
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-05-05T14:35:26.209732091+03:00"
+    created: "2021-07-13T17:47:32.629392+03:00"
     description: A Helm chart for Kubernetes
     digest: 1fd5383a391d1699f719fe7df32d4447710afd3a048f9d895e5370010c3a9c1f
     name: fluentd-kubernetes-daemonset
@@ -39,7 +39,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-05-05T14:35:26.209467885+03:00"
+    created: "2021-07-13T17:47:32.628195+03:00"
     description: A Helm chart for Kubernetes
     digest: 80ddff4677e397e03ee1a4906c3d129305921c86f6d5c2c93d81f6d0bdd65802
     name: fluentd-kubernetes-daemonset
@@ -48,7 +48,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-05-05T14:35:26.20920431+03:00"
+    created: "2021-07-13T17:47:32.62679+03:00"
     description: A Helm chart for Kubernetes
     digest: c87a6f4779cd987c0efd2c33461d6aed893799752b2dfb928394d96ac5fe125e
     name: fluentd-kubernetes-daemonset
@@ -57,7 +57,7 @@ entries:
     version: 0.1.3
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-05-05T14:35:26.208945496+03:00"
+    created: "2021-07-13T17:47:32.625021+03:00"
     description: A Helm chart for Kubernetes
     digest: db0d6a752a346a125075b3a56706f8c3c5dffd99603cfd982b214ed19b7f810e
     name: fluentd-kubernetes-daemonset
@@ -66,7 +66,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2021-05-05T14:35:26.208681616+03:00"
+    created: "2021-07-13T17:47:32.623436+03:00"
     description: A Helm chart for Kubernetes
     digest: 0794c39ffa0249f146073f458438270a92f173816b6439b9e8b933d0f3e93328
     name: fluentd-kubernetes-daemonset
@@ -75,7 +75,7 @@ entries:
     version: 0.1.1
   nsq:
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.216296387+03:00"
+    created: "2021-07-13T17:47:32.656073+03:00"
     description: A Helm chart for nsq
     digest: 1ed8f39a5eb6dc2426a339365bab63e22045f2c49ddbd68c0b2543f44ebb6ec1
     name: nsq
@@ -83,7 +83,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.6.6.tgz
     version: 0.6.6
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.216048147+03:00"
+    created: "2021-07-13T17:47:32.654725+03:00"
     description: A Helm chart for nsq
     digest: d84b44315a85980671929f79e1875b3d1b5d9a7fcdf9672e3a0b3e43a0a91b56
     name: nsq
@@ -91,7 +91,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.6.5.tgz
     version: 0.6.5
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.215797128+03:00"
+    created: "2021-07-13T17:47:32.653336+03:00"
     description: A Helm chart for nsq
     digest: 403f3785b9fcc549fd5f9479710e002dd75491f78db61ac3ade6f4a76fc693ca
     name: nsq
@@ -99,7 +99,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.6.4.tgz
     version: 0.6.4
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.215533321+03:00"
+    created: "2021-07-13T17:47:32.652024+03:00"
     description: A Helm chart for nsq
     digest: fcc90e981712aefc30ab954428c31a5d498aed3f06b9d14ee799bd13f4006629
     name: nsq
@@ -107,7 +107,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.6.3.tgz
     version: 0.6.3
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.215024749+03:00"
+    created: "2021-07-13T17:47:32.650287+03:00"
     description: A Helm chart for nsq
     digest: 9fe40379c82e9bdf5b4e7e2bb343b187dfe54b39b0339b42e52872b2ad897a77
     name: nsq
@@ -115,7 +115,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.6.2.tgz
     version: 0.6.2
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.214514004+03:00"
+    created: "2021-07-13T17:47:32.64906+03:00"
     description: A Helm chart for nsq
     digest: b609442a16084bac4511fc9402932bc73fbadc6addcfc5d43444cd1959d6f348
     name: nsq
@@ -123,7 +123,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.6.0.tgz
     version: 0.6.0
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.213773406+03:00"
+    created: "2021-07-13T17:47:32.647899+03:00"
     description: A Helm chart for nsq
     digest: e91cd1381e12192e1b1fe512769f2d6f6444acf06a538841963c797b4e31b570
     name: nsq
@@ -131,7 +131,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.5.4.tgz
     version: 0.5.4
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.213491477+03:00"
+    created: "2021-07-13T17:47:32.646817+03:00"
     description: A Helm chart for nsq
     digest: 19fbd00995d6d62b109ebc9e3b798219e7a3ed6c71688c7a8753e6d475c221bc
     name: nsq
@@ -139,7 +139,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.5.3.tgz
     version: 0.5.3
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.213232715+03:00"
+    created: "2021-07-13T17:47:32.64563+03:00"
     description: A Helm chart for nsq
     digest: 2cc077bf68688dd85bbac57e7f68405c9aa70ec908ca363900dbc47f9ca615c0
     name: nsq
@@ -147,7 +147,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.5.2.tgz
     version: 0.5.2
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.212980253+03:00"
+    created: "2021-07-13T17:47:32.644597+03:00"
     description: A Helm chart for nsq
     digest: 3a95bb4d8860e62d9969275301da7d39e7210bbb81903c0c6b1170e751b22540
     name: nsq
@@ -155,7 +155,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.5.1.tgz
     version: 0.5.1
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.212720869+03:00"
+    created: "2021-07-13T17:47:32.643571+03:00"
     description: A Helm chart for nsq
     digest: e479c0077ad227f71a658ba833de78d12629b65a645ef5f9618e90cc42c58ff0
     name: nsq
@@ -163,7 +163,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.5.0.tgz
     version: 0.5.0
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.212437568+03:00"
+    created: "2021-07-13T17:47:32.642448+03:00"
     description: A Helm chart for nsq
     digest: 5bee148b6d3abda1ff32d81404331971453007837b9eb47d19a3534c6ee8bc6d
     name: nsq
@@ -171,7 +171,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.4.3.tgz
     version: 0.4.3
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.21220797+03:00"
+    created: "2021-07-13T17:47:32.64091+03:00"
     description: A Helm chart for nsq
     digest: d822fe7c88c77a04d82d650ef89c921cd8c1ecce1ce8897e51c66746d4a5996b
     name: nsq
@@ -179,7 +179,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.4.2.tgz
     version: 0.4.2
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.211980335+03:00"
+    created: "2021-07-13T17:47:32.63884+03:00"
     description: A Helm chart for nsq
     digest: 0e05e8ff35ba7590db043f2577f12ad4f21d0f46b1e5075f664ed20dd71e30cc
     name: nsq
@@ -187,7 +187,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.4.1.tgz
     version: 0.4.1
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.211749117+03:00"
+    created: "2021-07-13T17:47:32.637472+03:00"
     description: A Helm chart for nsq
     digest: 9263a42a7d047e2d7921a1cd0183b260d4ca91bd374700714975db4a4243dc86
     name: nsq
@@ -195,7 +195,7 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.3.0.tgz
     version: 0.3.0
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.211529409+03:00"
+    created: "2021-07-13T17:47:32.636082+03:00"
     description: A Helm chart for nsq
     digest: d9696b0aab133ec43dfacf3ca30e1c11ff594468b079ce4db7b46220a6dd7992
     name: nsq
@@ -203,16 +203,27 @@ entries:
     - https://augurysys.github.io/charts/nsq-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.211319767+03:00"
+    created: "2021-07-13T17:47:32.634984+03:00"
     description: A Helm chart for nsq
     digest: aa4d9e8c746ce13e3219df54caeb05f27eb4af6528c232284aef89a2bc219a2c
     name: nsq
     urls:
     - https://augurysys.github.io/charts/nsq-0.1.0.tgz
     version: 0.1.0
+  pipeline:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2021-07-13T17:47:32.65634+03:00"
+    description: A Helm chart for Kubernetes
+    digest: a83d054a6344f54e205783ddc5853e32ff6de958f2a33098314c3eff3d5283ee
+    name: pipeline
+    urls:
+    - https://augurysys.github.io/charts/pipeline-0.1.7.tgz
+    version: 0.1.7
   prometheus-adapter:
-  - appVersion: v0.5.0
-    created: "2021-05-05T14:35:26.217228654+03:00"
+  - apiVersion: v1
+    appVersion: v0.5.0
+    created: "2021-07-13T17:47:32.65896+03:00"
     description: A Helm chart for k8s prometheus adapter
     digest: 63f057bb6f2b32ab89ee76603c10fc478b3d18f8790269eb65e51df8b17358ac
     home: https://github.com/DirectXMan12/k8s-prometheus-adapter
@@ -230,8 +241,9 @@ entries:
     urls:
     - https://augurysys.github.io/charts/prometheus-adapter-v0.5.1.tgz
     version: v0.5.1
-  - appVersion: v0.5.0
-    created: "2021-05-05T14:35:26.216779509+03:00"
+  - apiVersion: v1
+    appVersion: v0.5.0
+    created: "2021-07-13T17:47:32.657677+03:00"
     description: A Helm chart for k8s prometheus adapter
     digest: 0fe0bcfff42ac4f0e6dc7af3feff43b664b14f9cc00b2c762d923fa2f7e81cd9
     home: https://github.com/DirectXMan12/k8s-prometheus-adapter
@@ -251,7 +263,7 @@ entries:
     version: v0.5.0
   prometheus-scylladb:
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.219515967+03:00"
+    created: "2021-07-13T17:47:32.672007+03:00"
     description: A Helm chart for scylladb prometheus monitoring
     digest: f076f64d59d033d39d37984ea7d3d658f9093b1250065370bcb35551916b2d62
     name: prometheus-scylladb
@@ -259,7 +271,7 @@ entries:
     - https://augurysys.github.io/charts/prometheus-scylladb-0.2.7.tgz
     version: 0.2.7
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.219291187+03:00"
+    created: "2021-07-13T17:47:32.670141+03:00"
     description: A Helm chart for scylladb prometheus monitoring
     digest: 392202c4cbfc493219c5fa0668d5339753a8b684e5f7dbbdd2876596c711023d
     name: prometheus-scylladb
@@ -267,7 +279,7 @@ entries:
     - https://augurysys.github.io/charts/prometheus-scylladb-0.2.6.tgz
     version: 0.2.6
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.219057538+03:00"
+    created: "2021-07-13T17:47:32.668986+03:00"
     description: A Helm chart for scylladb prometheus monitoring
     digest: 28cd88acb5e045728954c6ae9121f96b2a14c02d325db2ea77ba8e5738066f05
     name: prometheus-scylladb
@@ -275,7 +287,7 @@ entries:
     - https://augurysys.github.io/charts/prometheus-scylladb-0.2.5.tgz
     version: 0.2.5
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.218814822+03:00"
+    created: "2021-07-13T17:47:32.667599+03:00"
     description: A Helm chart for scylladb prometheus monitoring
     digest: 48721f7537453a5f86f8ca9b11190655dcfcdbbb856ba6dae705a3769c54cecd
     name: prometheus-scylladb
@@ -283,7 +295,7 @@ entries:
     - https://augurysys.github.io/charts/prometheus-scylladb-0.2.4.tgz
     version: 0.2.4
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.218583461+03:00"
+    created: "2021-07-13T17:47:32.66562+03:00"
     description: A Helm chart for scylladb prometheus monitoring
     digest: 8cdbedf58c20de6b548643eec9fe478f05d9c10444ec3d9693561398ff799c4a
     name: prometheus-scylladb
@@ -291,7 +303,7 @@ entries:
     - https://augurysys.github.io/charts/prometheus-scylladb-0.2.3.tgz
     version: 0.2.3
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.21834929+03:00"
+    created: "2021-07-13T17:47:32.664532+03:00"
     description: A Helm chart for scylladb prometheus monitoring
     digest: 4b75f784395a77b104d236d00e667b09802aeaeb0713f4199efdecc750beef9d
     name: prometheus-scylladb
@@ -299,7 +311,7 @@ entries:
     - https://augurysys.github.io/charts/prometheus-scylladb-0.2.2.tgz
     version: 0.2.2
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.218106906+03:00"
+    created: "2021-07-13T17:47:32.663021+03:00"
     description: A Helm chart for scylladb prometheus monitoring
     digest: e8616f1427e02f41d0c8f1af55818121551718f0a52d5a8e1f1f264c1b2082f5
     name: prometheus-scylladb
@@ -307,7 +319,7 @@ entries:
     - https://augurysys.github.io/charts/prometheus-scylladb-0.2.1.tgz
     version: 0.2.1
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.217883801+03:00"
+    created: "2021-07-13T17:47:32.661702+03:00"
     description: A Helm chart for scylladb prometheus monitoring
     digest: 584b1d986ee85b6475b87e464017261bb7406ad2f151dc42907e72b85db8c41b
     name: prometheus-scylladb
@@ -315,7 +327,7 @@ entries:
     - https://augurysys.github.io/charts/prometheus-scylladb-0.2.0.tgz
     version: 0.2.0
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.217634971+03:00"
+    created: "2021-07-13T17:47:32.660761+03:00"
     description: A Helm chart for scylladb prometheus monitoring
     digest: 4902b67df7c8e9168169e9354b79d9ae042e00d5cefaa0378ff964674c2ccc34
     name: prometheus-scylladb
@@ -323,7 +335,7 @@ entries:
     - https://augurysys.github.io/charts/prometheus-scylladb-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v1
-    created: "2021-05-05T14:35:26.217428717+03:00"
+    created: "2021-07-13T17:47:32.65986+03:00"
     description: A Helm chart for scylladb prometheus monitoring
     digest: 60cb3b2210381de9da36dcc22e9ac76a0ba07c828fefed2b3ac29e207aa1fd20
     name: prometheus-scylladb
@@ -333,10 +345,8 @@ entries:
   scylladb:
   - apiVersion: v1
     appVersion: 0.1.0
-    created: "2021-05-05T14:35:26.219788841+03:00"
-    description: Scylla is an open-source distributed NoSQL data store. It was designed
-      to be compatible with Apache Cassandra while achieving significantly higher
-      throughputs and lower latencies.
+    created: "2021-07-13T17:47:32.673276+03:00"
+    description: Scylla is an open-source distributed NoSQL data store. It was designed to be compatible with Apache Cassandra while achieving significantly higher throughputs and lower latencies.
     digest: e26bfb136b988e8735a2d26e91eedb160f8a46f8219c2b826921a5150dda588f
     icon: https://www.scylladb.com/wp-content/uploads/sea-monster-speed-racer-01.png
     keywords:
@@ -356,4 +366,4 @@ entries:
     urls:
     - https://augurysys.github.io/charts/scylladb-0.1.0.tgz
     version: 0.1.0
-generated: "2021-05-05T14:35:26.208304406+03:00"
+generated: "2021-07-13T17:47:32.621559+03:00"
