@@ -28,3 +28,6 @@ data:
   {{- with .Values.envVars.persistMachineSamplesBucket }}
   PERSIST_MACHINE_SAMPLES_BUCKET: {{ . }}
   {{- end }}
+  {{- with .Values.envVars.preprocessorsPath }}
+  PREPROCESSORS_PATH: {{ . }}
+  {{- end }}
